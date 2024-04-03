@@ -1,0 +1,24 @@
+# netlify.toml
+
+[build]
+  # Directory to deploy.
+  # command = "npm run build"
+
+  # Directory that contains your serverless functions.
+  functions = "netlify/functions"
+
+[dev]
+  # This port is used by Netlify Dev to serve your site locally.
+  port = 8888
+  # Specifies the directory to serve when running Netlify Dev.
+  # If you're developing a static site without a build process, you might point this to the same as `publish`.
+  publish = "src/"
+
+# Environment variables can also be specified here for deployment.
+# [context.production.environment]
+#   NODE_ENV = "production"
+
+# Additional context-specific settings, like for deploy previews or branch deploys,
+# can be configured as well.
+# [context.deploy-preview]
+#   ...

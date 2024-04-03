@@ -1,0 +1,12 @@
+runtime: nodejs
+env: flex
+
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 3
+  cpu_utilization:
+    target_utilization: 0.5
+
+env_variables:
+  NODE_ENV: 'production'
+  DATABASE_URL: 'postgresql://hblab_owner:y1IdMU4EiYfb@ep-falling-flower-a52n1gt7.us-east-2.aws.neon.tech/hblab?sslmode=require'
