@@ -9,13 +9,13 @@ const logger = winston.createLogger({
   level: 'info',
   format: winston.format.combine(
     winston.format.timestamp(),
-    winston.format.json()
+    winston.format.json(),
   ),
   transports: [
     new winston.transports.Console({
       format: winston.format.combine(
         winston.format.colorize(),
-        winston.format.simple()
+        winston.format.simple(),
       ),
     }),
     new winston.transports.File({ filename: 'combined.log' }),
@@ -28,19 +28,33 @@ const pool = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-// Allow requests from your domain
+// Configure CORS to allow requests from specified origins
 const corsOptions = {
-  origin: 'https://helloblue.ai',
-  optionsSuccessStatus: 200 // For legacy browser support
+  origin(origin, callback) { // Using method shorthand and naming the function
+    // List of allowed origins
+    const allowedOrigins = ['https://helloblue.ai', 'http://localhost:3000'];
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  optionsSuccessStatus: 200, // Added trailing comma
 };
 
+// Enable CORS with the above options
 app.use(cors(corsOptions));
+
+// Enable built-in body parser for JSON
 app.use(express.json());
 
+// Define the root route
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
+// Define a route to fetch company data
 app.get('/api/company', async (req, res) => {
   const { name } = req.query;
   if (!name) {
@@ -74,6 +88,7 @@ app.get('/api/company', async (req, res) => {
   return undefined;
 });
 
+// Start the server on the specified port
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
   logger.info(`Server running on port ${PORT}`);
