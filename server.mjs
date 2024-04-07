@@ -30,17 +30,12 @@ const pool = new pg.Pool({
 
 // Configure CORS to allow requests from specified origins
 const corsOptions = {
-  origin(origin, callback) { // Using method shorthand and naming the function
-    // List of allowed origins
-    const allowedOrigins = ['https://helloblue.ai', 'http://localhost:3000'];
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin || allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error('Not allowed by CORS'));
-    }
-  },
-  optionsSuccessStatus: 200, // Added trailing comma
+  origin: [
+    'https://helloblue.ai',
+    'http://localhost:3000',
+    'https://dolphin-app-dchbn.ondigitalocean.app',
+  ],
+  optionsSuccessStatus: 200,
 };
 
 // Enable CORS with the above options
@@ -84,7 +79,8 @@ app.get('/api/company', async (req, res) => {
       ...(process.env.NODE_ENV === 'development' ? { detail: error.message } : {}),
     });
   }
-  // This return is to satisfy ESLint's consistent-return rule.
+
+  // Return undefined to satisfy the consistent-return rule
   return undefined;
 });
 
