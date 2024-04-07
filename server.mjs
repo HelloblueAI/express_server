@@ -49,11 +49,11 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-// Define a route to fetch company data
 app.get('/api/company', async (req, res) => {
   const { name } = req.query;
   if (!name) {
-    return res.status(400).json({ error: 'Please provide a company name.' });
+    res.status(400).json({ error: 'Please provide a company name.' });
+    return; // Early return to prevent further execution
   }
 
   try {
@@ -62,13 +62,12 @@ app.get('/api/company', async (req, res) => {
     const { rows } = await pool.query(queryText, queryValues);
 
     if (rows.length > 0) {
-      const response = {
+      res.json({
         company_name: rows[0].company_name,
         phone_number: rows[0].phone_number,
         url: rows[0].url,
         email: rows[0].email,
-      };
-      res.json(response);
+      });
     } else {
       res.status(404).json({ error: 'Company not found.' });
     }
@@ -79,9 +78,7 @@ app.get('/api/company', async (req, res) => {
       ...(process.env.NODE_ENV === 'development' ? { detail: error.message } : {}),
     });
   }
-
-  // Return undefined to satisfy the consistent-return rule
-  return undefined;
+  // No need for a return here; all paths end with res.json() or res.status().json()
 });
 
 // Start the server on the specified port
