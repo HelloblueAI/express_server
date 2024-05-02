@@ -6,7 +6,7 @@ This project is an Express.js API server that handles requests for company infor
 
 - Node.js (preferably the latest LTS version)
 - PostgreSQL database
-- A `.env` file with your environment variables (e.g., `DATABASE_URL`)
+- A `.env` file with a environment variables (e.g., `DATABASE_URL`)
 
 ## Installation
 
