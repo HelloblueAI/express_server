@@ -39,45 +39,48 @@ Clone the repository and install dependencies:
 `cd <repository-directory>`
 `npm install`
 
-# Configuration
-Create a .env file in the root of your project with the following required environment variable:
+## Configuration
 
-# plaintext
+Create a `.env` file in the root of your project directory and include the following essential environment variable:
+```plaintext
 DATABASE_URL=your_database_connection_string
-Optionally, you can specify the PORT environment variable in the .env file to override the default port (8080).
+```
+Optionally, you can specify the `PORT` environment variable in the `.env` file to override the default port (8080).
 
-Running the Server
-To start the server, run:
+## Running the Server
 
-`npm start`
-This will start the server on the specified port or default to 8080, logging the startup details to the console.
+To launch the server, execute:
+```bash
+npm start
+```
+This command starts the server on the specified port or defaults to 8080 and logs startup details in the console.
 
-API Endpoints
-GET /
-Returns a simple "Hello World!" message.
+## API Endpoints
 
-GET /api/company
-Fetches company information based on the provided query parameter name. It expects a URL like:
+- `GET /`
+  - Returns a simple "Hello World!" message.
+- `GET /api/company`
+  - Fetches company information based on the provided query parameter name, e.g., `/api/company?name=exampleCompany`. Returns company details if found; otherwise, it responds with a 404 error and a "Company not found." message.
 
+## Logging
 
-/api/company?name=exampleCompany
-If found, it returns the company details, otherwise, it will return a 404 error with the message "Company not found."
+Logs are managed through `winston` and are directed to:
+- `combined.log` - Contains all logs.
+- `error.log` - Contains only logs of error level.
 
-Logging
-Logs are written to the console and to files in the project root:
+## Security and CORS
 
-combined.log - Contains all logs.
-error.log - Contains only error level logs.
-Security and CORS
-The server is configured to accept requests from the following origins:
+The server configures CORS to accept requests from the following origins:
+- `https://helloblue.ai`
+- `http://localhost:3000`
+- `https://dolphin-app-dchbn.ondigitalocean.app`
 
-https://helloblue.ai
-http://localhost:3000
-https://dolphin-app-dchbn.ondigitalocean.app
-Requests from other origins will be rejected.
+Requests originating from other sources will be rejected to ensure security.
 
-Contributing
-Contributions are welcome. Please fork the repository and submit a pull request with your changes.
+## Contributing
 
-License
-Specify your license here or state that the project is unlicensed.
+Contributions are highly encouraged. Please fork the repository, make your changes, and submit a pull request.
+
+## License
+
+[Specify your license here or state that the project is unlicensed.]
