@@ -83,4 +83,4 @@ Contributions are highly encouraged. Please fork the repository, make your chang
 
 ## License
 
-[Specify your license here or state that the project is unlicensed.]
+For more information on the licensing of this project, see the [LICENSE](LICENSE.md) file.
