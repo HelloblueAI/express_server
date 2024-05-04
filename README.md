@@ -1,4 +1,4 @@
-![cd8f9ae0-7fdf-4cf2-b559-e814e15442da](https://github.com/pejmantheory/hbLab-B01/assets/81389644/526db8c8-0854-4964-9b13-6eaa4cea8fd9)
+
 # HelloBlue API Server![Untitled design (3)](https://github.com/pejmantheory/express_server/assets/81389644/7310a607-6d1b-4cc7-9c85-f8ec85b81350)
 
 
