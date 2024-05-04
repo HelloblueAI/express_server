@@ -7,29 +7,6 @@ This project is an Express.js API server that handles requests for company infor
 
 - Node.js (preferably the latest LTS version)
 - PostgreSQL database
-- A `.env` file with a environment variables (e.g., `DATABASE_URL`)
-
-## Installation
-
-Clone the repository and install dependencies:
-
-`git clone <repository-url>`
-`cd <repository-directory>`
-`npm install`
-
-
-Here's a README.md file that describes your server setup, including details about its dependencies, configuration, and usage:
-
-markdown
-Copy code
-# HelloBlue API Server
-
-This project is an Express.js API server that handles requests for company information stored in a PostgreSQL database. It utilizes `cors` for cross-origin resource sharing and is equipped with `winston` for logging.
-
-## Prerequisites
-
-- Node.js (preferably the latest LTS version)
-- PostgreSQL database
 - A `.env` file with your environment variables (e.g., `DATABASE_URL`)
 
 ## Installation
