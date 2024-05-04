@@ -1,3 +1,4 @@
+![71a60a94-b852-4636-94cf-e0b4de6d3371](https://github.com/pejmantheory/express_server/assets/81389644/b2a0795e-d1fc-4d15-aeae-946564977d9e)
 # HelloBlue API Server
 
 This project is an Express.js API server that handles requests for company information stored in a PostgreSQL database. It utilizes `cors` for cross-origin resource sharing and is equipped with `winston` for logging.
