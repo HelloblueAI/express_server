@@ -61,5 +61,5 @@ Contributions are highly encouraged. Please fork the repository, make your chang
 
 ## License
 
-For more information on the licensing of this project, see the [LICENSE](https://github.com/pejmantheory/express_server/blob/1d7bf4aca10daacc5e6541d73350815bc4103816/LICENSE.md) file.
+For more information on the licensing of this project, see the [LICENSE](https://github.com/HelloblueAI/express_server/blob/84100b2abd3d7473b29e013c04bd863e95472370/LICENSE.md) 
 
