@@ -60,7 +60,7 @@ The server configures CORS to accept requests from the following origins:
 Requests originating from other sources will be rejected to ensure security.
 
 # Security Policy
-For detailed information on our security practices and how to report security vulnerabilities, please see our [Security Policy](https://github.com/HelloblueAI/express_server/blob/76c83a36dbf7df1e01149c0a19b252ee9079ab2b/SECURITY.md).
+For detailed information on our security practices and how to report security vulnerabilities, please see our [Security Policy](https://github.com/HelloblueAI/express_server/blob/76c83a36dbf7df1e01149c0a19b252ee9079ab2b/SECURITY.md)
 
 ## Reporting a Vulnerability
 
