@@ -59,6 +59,25 @@ The server configures CORS to accept requests from the following origins:
 
 Requests originating from other sources will be rejected to ensure security.
 
+# Security Policy
+
+## Reporting a Vulnerability
+
+If you discover a potential security issue in our project, please send us a confidential report to `security@helloblue.ai`. Do not report security vulnerabilities through public GitHub issues.
+
+## Response Protocol
+
+Upon receiving a security vulnerability report, the protocol is as follows:
+
+- **Acknowledgment**: You will receive an initial response within 48 hours, acknowledging receipt of your report.
+- **Investigation**: We will investigate the issue and determine the necessary remediation steps.
+- **Resolution**: We aim to resolve significant issues within 90 days of report verification, depending on the severity and complexity. We will keep you informed of our progress.
+
+## Public Disclosure
+
+- **Acknowledgment**: Vulnerabilities found and resolved will be publicly acknowledged in our project updates. Reporters may be credited for their discovery, provided they consent to be recognized.
+
+
 ## Contributing
 
 Contributions are highly encouraged. Please fork the repository, make your changes, and submit a pull request.
