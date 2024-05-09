@@ -15,8 +15,8 @@ This project is an Express.js API server that handles requests for company infor
 
 Clone the repository and install dependencies:
 
-`git clone <repository-url>`
-`cd <repository-directory>`
+`git clone <https://github.com/HelloblueAI/express_server.git>`
+`cd <express_server>`
 `npm install`
 
 ## Configuration
