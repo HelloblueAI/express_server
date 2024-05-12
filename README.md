@@ -81,7 +81,7 @@ Upon receiving a security vulnerability report, the protocol is as follows:
 
 ## Contributing
 
-Contributions are highly encouraged. Please fork the repository, make your changes, and submit a pull request.
+Contributions are highly encouraged. Please fork the repository, make your changes, and submit a pull request. If you encounter any issues, please submit a new issue on our [issues page](https://github.com/HelloblueAI/hbLab-B01/issues)
 
 ## License
 
