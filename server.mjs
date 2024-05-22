@@ -1,65 +1,34 @@
-import 'dotenv/config';
 import express from 'express';
 import pg from 'pg';
 import cors from 'cors';
-import winston from 'winston';
+import helmet from 'helmet';
+import config from './config.js';
+import logger from './logger.js';
 
-// Configure Winston logger
-const logger = winston.createLogger({
-  level: 'info',
-  format: winston.format.combine(
-    winston.format.timestamp(),
-    winston.format.json(),
-  ),
-  transports: [
-    new winston.transports.Console({
-      format: winston.format.combine(
-        winston.format.colorize(),
-        winston.format.simple(),
-      ),
-    }),
-    new winston.transports.File({ filename: 'combined.log' }),
-    new winston.transports.File({ filename: 'error.log', level: 'error' }),
-  ],
-});
-
+// Initialize Express and PostgreSQL pool
 const app = express();
-const pool = new pg.Pool({
-  connectionString: process.env.DATABASE_URL,
-});
+const pool = new pg.Pool({ connectionString: config.databaseUrl });
 
-// Configure CORS to allow requests from specified origins
-const corsOptions = {
-  origin: [
-    'https://helloblue.ai',
-    'http://localhost:3000',
-    'https://dolphin-app-dchbn.ondigitalocean.app',
-  ],
-  optionsSuccessStatus: 200,
-};
-
-// Enable CORS with the above options
-app.use(cors(corsOptions));
-
-// Enable built-in body parser for JSON
+// Middleware
+app.use(helmet()); // Adds security-related headers
+app.use(cors({ origin: config.corsOrigins, optionsSuccessStatus: 200 }));
 app.use(express.json());
 
-// Define the root route
+// Root route
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.get('/api/company', async (req, res) => {
+// Company API route
+app.get('/api/company', async (req, res, next) => {
   const { name } = req.query;
   if (!name) {
-    res.status(400).json({ error: 'Please provide a company name.' });
-    return; // Early return to prevent further execution
+    return res.status(400).json({ error: 'Please provide a company name.' });
   }
 
   try {
     const queryText = 'SELECT * FROM companies WHERE LOWER(company_name) = LOWER($1)';
-    const queryValues = [name];
-    const { rows } = await pool.query(queryText, queryValues);
+    const { rows } = await pool.query(queryText, [name]);
 
     if (rows.length > 0) {
       res.json({
@@ -72,17 +41,20 @@ app.get('/api/company', async (req, res) => {
       res.status(404).json({ error: 'Company not found.' });
     }
   } catch (error) {
-    logger.error('Database query error:', error);
-    res.status(500).json({
-      error: 'Internal server error, could not fetch company data.',
-      ...(process.env.NODE_ENV === 'development' ? { detail: error.message } : {}),
-    });
+    next(error); // Pass the error to the error handler
   }
-  // No need for a return here; all paths end with res.json() or res.status().json()
 });
 
-// Start the server on the specified port
-const PORT = process.env.PORT || 8080;
-app.listen(PORT, () => {
-  logger.info(`Server running on port ${PORT}`);
+// Global error handler
+app.use((err, req, res, next) => {
+  logger.error('Internal server error:', err);
+  res.status(500).json({
+    error: 'Internal server error, could not fetch company data.',
+    ...(process.env.NODE_ENV === 'development' ? { detail: err.message } : {}),
+  });
+});
+
+// Start the server
+app.listen(config.port, () => {
+  logger.info(`Server running on port ${config.port}`);
 });
