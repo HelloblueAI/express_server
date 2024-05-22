@@ -2,8 +2,8 @@ import express from 'express';
 import pg from 'pg';
 import cors from 'cors';
 import helmet from 'helmet';
-import config from './config.js';
-import logger from './logger.js';
+import config from './config.mjs';
+import logger from './logger.mjs';
 
 // Initialize Express and PostgreSQL pool
 const app = express();
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 });
 
 // Company API route
-app.get('/api/company', async (req, res, next) => {
+app.get('/api/company', async (req, res) => { // Removed `next`
   const { name } = req.query;
   if (!name) {
     return res.status(400).json({ error: 'Please provide a company name.' });
@@ -31,22 +31,25 @@ app.get('/api/company', async (req, res, next) => {
     const { rows } = await pool.query(queryText, [name]);
 
     if (rows.length > 0) {
-      res.json({
+      return res.json({
         company_name: rows[0].company_name,
         phone_number: rows[0].phone_number,
         url: rows[0].url,
         email: rows[0].email,
       });
-    } else {
-      res.status(404).json({ error: 'Company not found.' });
     }
+    return res.status(404).json({ error: 'Company not found.' });
   } catch (error) {
-    next(error); // Pass the error to the error handler
+    logger.error('Database query error:', error);
+    return res.status(500).json({
+      error: 'Internal server error, could not fetch company data.',
+      ...(process.env.NODE_ENV === 'development' ? { detail: error.message } : {}),
+    });
   }
 });
 
 // Global error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res) => { // Removed `next`
   logger.error('Internal server error:', err);
   res.status(500).json({
     error: 'Internal server error, could not fetch company data.',

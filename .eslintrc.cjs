@@ -22,5 +22,13 @@ module.exports = {
     sourceType: 'module',
   },
   rules: {
+    'import/extensions': ['error', 'ignorePackages', {
+      js: 'always',
+      mjs: 'always',
+      jsx: 'always',
+    }],
+    'comma-dangle': ['error', 'always-multiline'],
+    'no-else-return': 'error',
+    'no-unused-vars': ['error', { argsIgnorePattern: '^_' }],
   },
 };
