@@ -19,7 +19,7 @@ const pool = new pg.Pool({
 });
 
 // Middleware
-app.use(helmet()); // Adds security-related headers
+app.use(helmet());
 app.use(cors({ origin: config.corsOrigins, optionsSuccessStatus: 200 }));
 app.use(express.json());
 
@@ -35,16 +35,6 @@ app.get('/test-db', async (req, res) => {
     res.json({ message: 'Database connection is successful', time: result.rows[0].now });
   } catch (error) {
     res.status(500).json({ error: 'Database connection failed', detail: error.message });
-  }
-});
-
-// Test Fetch Companies
-app.get('/api/test-companies', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT * FROM companies LIMIT 10');
-    res.json(result.rows);
-  } catch (error) {
-    res.status(500).json({ error: 'Failed to fetch companies', detail: error.message });
   }
 });
 
