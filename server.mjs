@@ -19,7 +19,7 @@ const pool = new pg.Pool({
 });
 
 // Middleware
-app.use(helmet());
+app.use(helmet()); // Adds security-related headers
 app.use(cors({ origin: config.corsOrigins, optionsSuccessStatus: 200 }));
 app.use(express.json());
 
@@ -34,8 +34,17 @@ app.get('/test-db', async (req, res) => {
     const result = await pool.query('SELECT NOW()');
     res.json({ message: 'Database connection is successful', time: result.rows[0].now });
   } catch (error) {
-    logger.error('Database connection failed:', error);
     res.status(500).json({ error: 'Database connection failed', detail: error.message });
+  }
+});
+
+// Test Fetch Companies
+app.get('/api/test-companies', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM companies LIMIT 10');
+    res.json(result.rows);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch companies', detail: error.message });
   }
 });
 
@@ -63,7 +72,7 @@ app.get('/api/company', async (req, res) => {
     logger.error('Database query error:', error);
     return res.status(500).json({
       error: 'Internal server error, could not fetch company data.',
-      detail: error.message,
+      ...(process.env.NODE_ENV === 'development' ? { detail: error.message } : {}),
     });
   }
 });
@@ -73,7 +82,7 @@ app.use((err, req, res, _next) => {
   logger.error('Internal server error:', err);
   res.status(500).json({
     error: 'Internal server error, could not fetch company data.',
-    detail: err.message,
+    ...(process.env.NODE_ENV === 'development' ? { detail: err.message } : {}),
   });
 });
 
