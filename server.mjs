@@ -38,6 +38,16 @@ app.get('/test-db', async (req, res) => {
   }
 });
 
+// Test Fetch Companies
+app.get('/api/test-companies', async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM companies LIMIT 10');
+    res.json(result.rows);
+  } catch (error) {
+    res.status(500).json({ error: 'Failed to fetch companies', detail: error.message });
+  }
+});
+
 // Company API route
 app.get('/api/company', async (req, res) => {
   const { name } = req.query;
