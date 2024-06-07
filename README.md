@@ -54,7 +54,7 @@ Logs are managed through `winston` and are directed to:
 
 The server configures CORS to accept requests from the following origins:
 - `https://helloblue.ai`
-- `http://localhost:3000`
+- `http://localhost:3001`
 - `https://dolphin-app-dchbn.ondigitalocean.app`
 
 Requests originating from other sources will be rejected to ensure security.
