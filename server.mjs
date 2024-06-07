@@ -20,7 +20,7 @@ const pool = new pg.Pool({
 
 // Middleware
 app.use(helmet());
-app.use(cors({ origin: config.corsOrigins, optionsSuccessStatus: 200 }));
+app.use(cors());  // Allow all origins for now
 app.use(express.json());
 
 // Root route
