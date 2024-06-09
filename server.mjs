@@ -7,7 +7,6 @@ import logger from './logger.mjs';
 
 dotenv.config();
 
-
 const app = express();
 const pool = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -16,15 +15,22 @@ const pool = new pg.Pool({
   },
 });
 
-
 app.use(helmet());
-app.use(cors());  
+app.use(cors({
+  origin: '*',
+}));
 app.use(express.json());
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
+  next();
+});
 
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
-
 
 app.get('/test-db', async (req, res) => {
   try {
@@ -35,7 +41,6 @@ app.get('/test-db', async (req, res) => {
   }
 });
 
-
 app.get('/api/test-companies', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM companies LIMIT 10');
@@ -44,7 +49,6 @@ app.get('/api/test-companies', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch companies', detail: error.message });
   }
 });
-
 
 app.get('/api/company', async (req, res) => {
   const { name } = req.query;
@@ -82,7 +86,6 @@ app.use((err, req, res, _next) => {
     ...(process.env.NODE_ENV === 'development' ? { detail: err.message } : {}),
   });
 });
-
 
 const port = process.env.PORT || 4002;
 app.listen(port, () => {
