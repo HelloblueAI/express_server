@@ -3,13 +3,11 @@ import pg from 'pg';
 import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
-import config from './config.mjs';
 import logger from './logger.mjs';
 
-// Load environment variables
 dotenv.config();
 
-// Initialize Express and PostgreSQL pool
+
 const app = express();
 const pool = new pg.Pool({
   connectionString: process.env.DATABASE_URL,
@@ -18,17 +16,16 @@ const pool = new pg.Pool({
   },
 });
 
-// Middleware
+
 app.use(helmet());
-app.use(cors());  // Allow all origins for now
+app.use(cors());  
 app.use(express.json());
 
-// Root route
 app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-// Test Database Connection
+
 app.get('/test-db', async (req, res) => {
   try {
     const result = await pool.query('SELECT NOW()');
@@ -38,7 +35,7 @@ app.get('/test-db', async (req, res) => {
   }
 });
 
-// Test Fetch Companies
+
 app.get('/api/test-companies', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM companies LIMIT 10');
@@ -48,7 +45,7 @@ app.get('/api/test-companies', async (req, res) => {
   }
 });
 
-// Company API route
+
 app.get('/api/company', async (req, res) => {
   const { name } = req.query;
   if (!name) {
@@ -86,7 +83,8 @@ app.use((err, req, res, _next) => {
   });
 });
 
-// Start the server
-app.listen(config.port, () => {
-  logger.info(`Server running on port ${config.port}`);
+
+const port = process.env.PORT || 4002;
+app.listen(port, () => {
+  logger.info(`Server running on port ${port}`);
 });
