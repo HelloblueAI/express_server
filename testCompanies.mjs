@@ -26,7 +26,7 @@ const logger = winston.createLogger({
   level: 'info',
   format: winston.format.combine(
     winston.format.timestamp(),
-    winston.format.json()
+    winston.format.json(),
   ),
   transports: [
     new winston.transports.Console(),
@@ -34,7 +34,7 @@ const logger = winston.createLogger({
   ],
 });
 
-const timeout = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
 
 async function fetchCompanyData(name) {
   try {
@@ -105,7 +105,7 @@ async function getCompanyPhoneNumber(companyName) {
   }
 }
 
-// Execute the script based on provided arguments
+
 const [,, command, companyName] = process.argv;
 
 if (command === 'testAll') {
