@@ -57,8 +57,8 @@ importers:
         specifier: ^0.8.5
         version: 0.8.5
       string-similarity-js:
-        specifier: ^1.0.0
-        version: 1.2.0
+        specifier: ^2.1.4
+        version: 2.1.4
       winston:
         specifier: ^3.17.0
         version: 3.17.0
@@ -2303,8 +2303,8 @@ packages:
     resolution: {integrity: sha512-+l6rNN5fYHNhZZy41RXsYptCjA2Igmq4EG7kZAYFQI1E1VTXarr6ZPXBg6eq7Y6eK4FEhY6AJlyuFIb/v/S0VQ==}
     engines: {node: '>=10'}
 
-  string-similarity-js@1.2.0:
-    resolution: {integrity: sha512-y6yjZ8Kg9ubl9VFh9KRv2B0T9iqRb8lVpfLwmScYtOhfew3bOffCsI/rqVSanOLnLO2+BUngLBm6IyEWx9sWGA==}
+  string-similarity-js@2.1.4:
+    resolution: {integrity: sha512-uApODZNjCHGYROzDSAdCmAHf60L/pMDHnP/yk6TAbvGg7JSPZlSto/ceCI7hZEqzc53/juU2aOJFkM2yUVTMTA==}
 
   string-width@4.2.3:
     resolution: {integrity: sha512-wKyQRQpjJ0sIp62ErSZdGsjMJWsap5oRNihHhu6G7JVO/9jIB6UyevL+tXuOqrng8j/cxKTWyWUwvSTriiZz/g==}
@@ -5220,7 +5220,7 @@ snapshots:
       char-regex: 1.0.2
       strip-ansi: 6.0.1
 
-  string-similarity-js@1.2.0: {}
+  string-similarity-js@2.1.4: {}
 
   string-width@4.2.3:
     dependencies:
