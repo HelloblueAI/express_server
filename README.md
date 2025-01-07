@@ -82,6 +82,7 @@ Upon receiving a security vulnerability report, the protocol is as follows:
 Contributions are highly encouraged. Please fork the repository, make your changes, and submit a pull request. If you encounter any issues, please submit a new issue on our [issues page](https://github.com/HelloblueAI/hbLab-B01/issues)
 
 ## License
-
+![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql)
+![MySQL](https://img.shields.io/badge/Database-MySQL-4479A1?logo=mysql)
 For more information on the licensing of this project, see the [LICENSE](https://github.com/HelloblueAI/express_server/blob/84100b2abd3d7473b29e013c04bd863e95472370/LICENSE.md) 
 
