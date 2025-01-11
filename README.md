@@ -21,12 +21,6 @@ Clone the repository and install dependencies:
 
 `npm install`
 
-## Configuration
-
-Create a `.env` file in the root of your project directory and include the following essential environment variable:
-```plaintext
-DATABASE_URL=your_database_connection_string
-```
 Optionally, you can specify the `PORT` environment variable in the `.env` file to override the default port (8080).
 
 ## Running the Server
