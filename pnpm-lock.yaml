@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@eslint/plugin-kit':
+        specifier: ^0.2.5
+        version: 0.2.5
       axios:
         specifier: ^1.7.9
         version: 1.7.9
@@ -17,6 +20,9 @@ importers:
       cors:
         specifier: ^2.8.5
         version: 2.8.5
+      cross-spawn:
+        specifier: ^7.0.6
+        version: 7.0.6
       csv-parser:
         specifier: ^3.2.0
         version: 3.2.0
