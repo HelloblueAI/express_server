@@ -1,6 +1,6 @@
 {
-  "name": "hb-express-server",
-  "version": "1.0.1",
+  "name": "HB-express-server",
+  "version": "1.0.8",
   "description": "An Express server for handling HTTP requests with various utilities and middleware.",
   "type": "module",
   "main": "server.mjs",

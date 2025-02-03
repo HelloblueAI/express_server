@@ -21,7 +21,7 @@ const pool = new Pool({
   },
 });
 
-// Setup Winston logger
+
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.combine(

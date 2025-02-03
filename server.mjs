@@ -83,7 +83,7 @@ app.get('/api/company', async (req, res) => {
   }
 });
 
-// Global error handler
+
 app.use((err, req, res, _next) => {
   logger.error('Internal server error:', err);
   res.status(500).json({
