@@ -1,7 +1,7 @@
 import axios from 'axios';
-import pg from 'pg';
 import dotenv from 'dotenv';
 import pLimit from 'p-limit';
+import pg from 'pg';
 import winston from 'winston';
 
 dotenv.config();
@@ -106,7 +106,7 @@ async function getCompanyPhoneNumber(companyName) {
 }
 
 
-const [,, command, companyName] = process.argv;
+const [, , command, companyName] = process.argv;
 
 if (command === 'testAll') {
   testAllCompanies();
