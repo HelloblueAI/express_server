@@ -5,7 +5,7 @@ const url = `https://dolphin-app-dchbn.ondigitalocean.app/api/company?name=${enc
 
 exec(`curl -s -X GET "${url}"`, (error, stdout, stderr) => {
   if (error) {
-    console.error(`Error executing curl: ${error}`);
+    console.error(`Error executing curl: ${error.message}`);
     return;
   }
   if (stderr) {
