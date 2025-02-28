@@ -4,6 +4,38 @@
 # hbLab-B01 API Server
 This project is an Express.js API server that handles requests for company information stored in a PostgreSQL database. It utilizes `cors` for cross-origin resource sharing and is equipped with `winston` for logging.
 
+
+Performance and Reliability Enhancements
+========================================
+
+Performance Enhancements
+------------------------
+
+*   Multi-core processing using Node.js cluster module to utilize all CPU cores
+*   Two-level caching with both memory (very fast) and disk caching
+*   Adaptive concurrency that automatically adjusts based on server response times
+*   Optimized database connection pooling
+*   Data compression for reduced network and storage usage
+
+
+Reliability Improvements
+------------------------
+
+*   Smart retry logic with exponential backoff for transient errors
+*   Better error handling and reporting
+*   Progress tracking with time estimates
+*   File exports for failed requests to help with debugging
+
+
+Code Structure
+--------------
+
+*   Better organization of related functionality
+*   More efficient resource usage
+*   Fixed bugs and edge cases
+*   ESLint compliance
+
+
 ## Prerequisites
 ![71a60a94-b852-4636-94cf-e0b4de6d3371](https://github.com/pejmantheory/express_server/assets/81389644/b2a0795e-d1fc-4d15-aeae-946564977d9e)
 
@@ -19,7 +51,7 @@ Clone the repository and install dependencies:
 
 `cd <express_server>`
 
-`npm install`
+`pnpm install`
 
 Optionally, you can specify the `PORT` environment variable in the `.env` file to override the default port (8080).
 
@@ -27,7 +59,7 @@ Optionally, you can specify the `PORT` environment variable in the `.env` file t
 
 To launch the server, execute:
 ```bash
-npm start
+pnpm start
 ```
 This command starts the server on the specified port or defaults to 8080 and logs startup details in the console.
 
@@ -81,3 +113,5 @@ For more information see the [LICENSE](LICENSE.md)
 
 ![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql)
 ![MySQL](https://img.shields.io/badge/Database-MySQL-4479A1?logo=mysql)
+
+

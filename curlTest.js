@@ -22,23 +22,137 @@
 //  THE SOFTWARE.
 
 import { exec } from 'child_process';
+import { performance } from 'perf_hooks';
+import os from 'os';
 
-const companyName = 'Verizon';
-const url = `https://dolphin-app-dchbn.ondigitalocean.app/api/company?name=${encodeURIComponent(companyName)}`;
+const config = {
+  apiBaseUrl: 'https://dolphin-app-dchbn.ondigitalocean.app/api/company',
+  timeout: 10,
+  concurrentRequests: Math.max(1, os.cpus().length - 1),
+  companies: [
+    'Verizon',
+    'Apple',
+    'Microsoft',
+    'Google',
+    'Amazon',
+  ],
+};
 
-exec(`curl -s -X GET "${url}"`, (error, stdout, stderr) => {
-  if (error) {
-    console.error(`Error executing curl: ${error.message}`);
+// Queue for managing requests
+const queue = [...config.companies];
+const results = [];
+let runningRequests = 0;
+const startTime = performance.now();
+
+/**
+ * Execute a curl request for a specific company
+ * @param {string} company - Company name to fetch
+ * @returns {Promise<void>}
+ */
+function fetchCompanyData(company) {
+  return new Promise((resolve) => {
+    const companyStartTime = performance.now();
+    const url = `${config.apiBaseUrl}?name=${encodeURIComponent(company)}`;
+    const curlCommand = `curl -s -X GET "${url}" -m ${config.timeout}`;
+
+    console.log(`Fetching data for ${company}...`);
+
+    exec(curlCommand, (error, stdout, stderr) => {
+      runningRequests--;
+
+      if (error) {
+        console.error(`Error fetching ${company}: ${error.message}`);
+        results.push({
+          company,
+          error: error.message,
+          duration: performance.now() - companyStartTime,
+        });
+      } else if (stderr) {
+        console.error(`stderr for ${company}: ${stderr}`);
+        results.push({
+          company,
+          error: stderr,
+          duration: performance.now() - companyStartTime,
+        });
+      } else {
+        try {
+          const jsonResponse = JSON.parse(stdout);
+          const duration = performance.now() - companyStartTime;
+
+          results.push({
+            company,
+            data: jsonResponse,
+            duration,
+          });
+
+          console.log(`✓ ${company} (${duration.toFixed(2)}ms)`);
+        } catch (parseError) {
+          console.error(`Error parsing response for ${company}:`, parseError);
+          results.push({
+            company,
+            error: 'JSON parse error',
+            raw: stdout,
+            duration: performance.now() - companyStartTime,
+          });
+        }
+      }
+
+
+      processNextInQueue();
+      resolve();
+    });
+  });
+}
+
+/**
+ * Process the next company in the queue if possible
+ */
+function processNextInQueue() {
+
+  if (queue.length === 0 && runningRequests === 0) {
+    printSummary();
     return;
   }
-  if (stderr) {
-    console.error(`stderr: ${stderr}`);
+
+  while (queue.length > 0 && runningRequests < config.concurrentRequests) {
+    const company = queue.shift();
+    runningRequests++;
+    fetchCompanyData(company);
   }
-  try {
-    const jsonResponse = JSON.parse(stdout);
-    console.log('Response:', JSON.stringify(jsonResponse, null, 2));
-  } catch (parseError) {
-    console.error('Error parsing response:', parseError);
-    console.log('Raw response:', stdout);
-  }
-});
+}
+
+/**
+ * Print a summary of all the fetched results
+ */
+function printSummary() {
+  const totalDuration = performance.now() - startTime;
+
+  console.log('\n========= RESULTS SUMMARY =========');
+  console.log(`Total time: ${totalDuration.toFixed(2)}ms`);
+  console.log(`Companies processed: ${results.length}`);
+  console.log(`Concurrent requests: ${config.concurrentRequests}`);
+
+  const successful = results.filter(r => !r.error).length;
+  console.log(`Success rate: ${successful}/${results.length} (${(successful/results.length*100).toFixed(2)}%)`);
+
+  const sortedResults = [...results].sort((a, b) => a.duration - b.duration);
+
+  console.log('\nPerformance by company:');
+  sortedResults.forEach(result => {
+    const status = result.error ? '❌' : '✓';
+    console.log(`${status} ${result.company}: ${result.duration.toFixed(2)}ms`);
+  });
+
+  console.log('\nDetailed results:');
+  results.forEach(result => {
+    console.log(`\n${result.company}:`);
+    if (result.error) {
+      console.log(`  Error: ${result.error}`);
+    } else {
+      console.log(`  Data: ${JSON.stringify(result.data, null, 2)}`);
+    }
+  });
+}
+
+console.log(`Starting company data fetch with ${config.concurrentRequests} concurrent requests...\n`);
+processNextInQueue();
