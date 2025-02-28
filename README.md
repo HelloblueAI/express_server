@@ -111,7 +111,14 @@ Contributions are highly encouraged. Please fork the repository, make your chang
 
 For more information see the [LICENSE](LICENSE.md)
 
+![Node.js](https://img.shields.io/badge/Runtime-Node.js-339933?logo=node.js)
+![ES6+](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript)
 ![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql)
 ![MySQL](https://img.shields.io/badge/Database-MySQL-4479A1?logo=mysql)
+![Express](https://img.shields.io/badge/Framework-Express-000000?logo=express)
+![Axios](https://img.shields.io/badge/HTTP-Axios-5A29E4?logo=axios)
+![Winston](https://img.shields.io/badge/Logging-Winston-231F20?logo=winston)
+![PM2](https://img.shields.io/badge/Process_Manager-PM2-2B037A?logo=pm2)
+![ESLint](https://img.shields.io/badge/Linter-ESLint-4B32C3?logo=eslint)
 
 
