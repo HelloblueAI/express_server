@@ -28,7 +28,6 @@ Reliability Improvements
 Code Structure
 --------------
 
-*   Better organization of related functionality
 *   More efficient resource usage
 *   Fixed bugs and edge cases
 *   ESLint compliance
@@ -120,7 +119,6 @@ For more information see the [LICENSE](LICENSE.md)
 ![GitHub CI/CD](https://img.shields.io/github/actions/workflow/status/HelloblueAI/express_server/main.yml?logo=github-actions&label=CI/CD)
 ![AWS](https://img.shields.io/badge/Cloud-AWS-FF9900?logo=amazon-aws)
 ![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?logo=vercel)
-![Netlify](https://img.shields.io/badge/Deployed%20on-Netlify-00C7B7?logo=netlify)
 ![CORS](https://img.shields.io/badge/CORS-Enabled-blue)
 ![HTTPS](https://img.shields.io/badge/HTTPS-Supported-green?logo=letsencrypt)
 ![JWT Auth](https://img.shields.io/badge/Auth-JWT%20Bearer-FF6600?logo=jsonwebtokens)
