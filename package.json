@@ -1,7 +1,7 @@
 {
   "name": "HB-express-server",
   "version": "1.0.8",
-  "description": "An Express server for handling HTTP requests with various utilities and middleware.",
+  "description": "A robust and scalable Express.js server designed to efficiently handle HTTP requests, middleware, and API integrations with security and performance optimizations.",
   "type": "module",
   "main": "server.mjs",
   "scripts": {
@@ -10,13 +10,18 @@
     "test": "mocha './testCompanies.mjs'",
     "pretest": "eslint .",
     "lint": "eslint .",
-    "check-updates": "ncu"
+    "check-updates": "ncu",
+    "build": "echo 'Building project...' && mkdir -p dist && cp -r server.mjs dist/"
   },
   "keywords": [
     "express",
     "server",
     "http",
-    "middleware"
+    "middleware",
+    "API",
+    "backend",
+    "performance",
+    "security"
   ],
   "author": "Pejman Haghighatnia",
   "license": "Apache-2.0",
