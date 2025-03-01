@@ -1,4 +1,22 @@
-*.gz filter=lfs diff=lfs merge=lfs -text
-*.pyc filter=lfs diff=lfs merge=lfs -text
-*.py filter=lfs diff=lfs merge=lfs -text
+# 🎯 Ensure Python is Recognized as a Main Language
+*.py linguist-language=Python
+*.pyc linguist-vendored
+*.pyd linguist-vendored
+
+# 🚀 Ensure JavaScript & TypeScript Are Counted
+*.js linguist-language=JavaScript
+*.jsx linguist-language=JavaScript
+*.ts linguist-language=TypeScript
+*.tsx linguist-language=TypeScript
+
+# 📦 Ignore Dependencies from Language Stats
+node_modules/* linguist-vendored
+dist/* linguist-vendored
+coverage/* linguist-vendored
+
+# 🎨 Image & Binary Files (Using Git LFS)
+*.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.svg filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
+*.gz filter=lfs diff=lfs merge=lfs -text
