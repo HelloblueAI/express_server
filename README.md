@@ -109,6 +109,7 @@ Contributions are highly encouraged. Please fork the repository, make your chang
 ### License
 
 For more information see the [LICENSE](LICENSE.md)
+
 ![Node.js](https://img.shields.io/badge/Runtime-Node.js-339933?logo=node.js)
 ![Express](https://img.shields.io/badge/Framework-Express-000000?logo=express)
 ![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql)
