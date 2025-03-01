@@ -25,28 +25,28 @@ jobs:
           node-version: '20.18.1'
           cache: 'pnpm'
 
-      - name: 📥 Install & Verify pnpm (Advanced Fix)
+      - name: 📥 Force Install & Persist pnpm (Final Fix)
         run: |
+          echo "🔹 Installing pnpm globally..."
+          npm install -g pnpm@8
+
           echo "🔹 Enabling Corepack for pnpm..."
-          corepack enable || echo "⚠️ Corepack failed, installing manually..."
+          corepack enable
+          corepack prepare pnpm@8 --activate
 
-          echo "🔹 Installing pnpm if not found..."
-          if ! command -v pnpm &> /dev/null; then
-            echo "🔹 pnpm not found, installing manually..."
-            npm install -g pnpm@8
-          fi
+          echo "🔹 Ensuring pnpm is in PATH..."
+          export PATH=$(npm root -g)/pnpm:$PATH
+          echo "export PATH=$(npm root -g)/pnpm:$PATH" >> ~/.bashrc
+          source ~/.bashrc
 
-          echo "🔹 Verifying pnpm installation..."
-          which pnpm || echo "⚠️ pnpm is still missing!"
-          pnpm --version || echo "⚠️ pnpm version check failed!"
-          pnpm doctor || echo "⚠️ pnpm health check failed!"
-
-      - name: 🔄 Ensure pnpm is in PATH
+      - name: 🔄 Verify pnpm Installation
         run: |
-          echo "🔹 Adding pnpm to PATH if missing..."
-          export PATH=$(pnpm root -g)/bin:$PATH
-          echo "🔹 Checking pnpm path..."
-          which pnpm
+          echo "🔹 Checking PNPM location..."
+          which pnpm || echo "⚠️ pnpm is still missing!"
+          echo "🔹 Checking PNPM version..."
+          pnpm --version || echo "⚠️ pnpm version check failed!"
+          echo "🔹 Running PNPM doctor..."
+          pnpm doctor || echo "⚠️ pnpm health check failed!"
 
       - name: 🚀 Install Dependencies (Handles Missing Lockfile)
         run: |
