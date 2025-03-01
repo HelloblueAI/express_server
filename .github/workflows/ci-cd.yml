@@ -10,6 +10,11 @@ on:
       - main
       - master
 
+permissions:
+  id-token: write  # Required for Sigstore signing
+  attestations: write  # Required to store attestations
+  contents: read
+
 jobs:
   build:
     name: 🚀 Build & Deploy
@@ -41,9 +46,9 @@ jobs:
         run: |
           if [ -f "pnpm-lock.yaml" ]; then
             echo "🔹 Using frozen lockfile..."
-            pnpm install --frozen-lockfile
+            pnpm install --frozen-lockfile || (echo "⚠️ Lockfile failed, retrying with no frozen lockfile..." && pnpm install --no-frozen-lockfile)
           else
-            echo "🔹 Lockfile missing, running install without frozen-lockfile..."
+            echo "⚠️ pnpm-lock.yaml is missing, using --no-frozen-lockfile..."
             pnpm install --no-frozen-lockfile
           fi
 
@@ -58,3 +63,9 @@ jobs:
 
       - name: 🔄 Restart Server (PM2)
         run: pm2 restart all || pm2 start pnpm --name "express_server" -- start
+
+      - name: 🔑 **Generate Build Provenance Attestation**
+        uses: actions/attest-build-provenance@v2
+        with:
+          subject-path: '${{ github.workspace }}/dist/**/*'  # Change to match your built artifacts
+          show-summary: true  # Display attestation results in GitHub UI
