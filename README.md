@@ -5,8 +5,6 @@
 This project is an Express.js API server that handles requests for company information stored in a PostgreSQL database. It utilizes `cors` for cross-origin resource sharing and is equipped with `winston` for logging.
 
 
-
-
 ### Performance Enhancements
 
 *   Multi-core processing using Node.js cluster module to utilize all CPU cores
