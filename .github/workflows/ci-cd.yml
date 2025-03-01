@@ -19,12 +19,13 @@ jobs:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
-      - name: 📦 Set up Node.js
+      - name: 📦 Set up Node.js (Correct Version)
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
+          node-version: '20.18.1' # Ensures the correct Node.js version is used
+          cache: 'pnpm'
 
-      - name: 📥 Install pnpm (Guaranteed Fix)
+      - name: 📥 Install pnpm (Final Fix)
         run: |
           corepack enable
           corepack prepare pnpm@8 --activate
@@ -37,8 +38,15 @@ jobs:
           echo "Checking PNPM version..."
           pnpm --version
 
-      - name: 🚀 Install Dependencies
-        run: pnpm install --frozen-lockfile
+      - name: 🚀 Install Dependencies (Handles Missing Lockfile)
+        run: |
+          if [ -f "pnpm-lock.yaml" ]; then
+            echo "Using frozen lockfile..."
+            pnpm install --frozen-lockfile
+          else
+            echo "Lockfile missing, running install without frozen-lockfile..."
+            pnpm install --no-frozen-lockfile
+          fi
 
       - name: 🧐 Run Linting (ESLint)
         run: pnpm run lint

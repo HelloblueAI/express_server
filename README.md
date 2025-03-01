@@ -6,8 +6,8 @@ This project is an Express.js API server that handles requests for company infor
 
 
 
-Performance Enhancements
-------------------------
+
+### Performance Enhancements
 
 *   Multi-core processing using Node.js cluster module to utilize all CPU cores
 *   Two-level caching with both memory (very fast) and disk caching
@@ -16,8 +16,7 @@ Performance Enhancements
 *   Data compression for reduced network and storage usage
 
 
-Reliability Improvements
-------------------------
+### Reliability Improvements
 
 *   Smart retry logic with exponential backoff for transient errors
 *   Better error handling and reporting
@@ -25,8 +24,7 @@ Reliability Improvements
 *   File exports for failed requests to help with debugging
 
 
-Code Structure
---------------
+### Code Structure
 
 *   More efficient resource usage
 *   Fixed bugs and edge cases
