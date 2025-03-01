@@ -129,7 +129,7 @@ For more information see the [LICENSE](LICENSE.md)
 **ES6+ JavaScript**
 ![ES6+](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript)
 
-**pnpm (Package Manager)**
+**Package Manager**
 ![pnpm](https://img.shields.io/badge/Package%20Manager-pnpm-F69220?logo=pnpm)
 
 ---
@@ -201,7 +201,7 @@ For more information see the [LICENSE](LICENSE.md)
 ---
 
 ### Package Management & Versioning
-**pnpm (Fast Package Manager)**
+**Fast Package Manager**
 ![pnpm](https://img.shields.io/badge/Package%20Manager-pnpm-F69220?logo=pnpm)
 
 **Semantic Versioning**
@@ -209,17 +209,5 @@ For more information see the [LICENSE](LICENSE.md)
 
 ---
 
-### Project Stats
-**Last Commit**
-![GitHub last commit](https://img.shields.io/github/last-commit/HelloblueAI/express_server)
-
-**Open Issues**
-![GitHub issues](https://img.shields.io/github/issues/HelloblueAI/express_server)
-
-**Forks**
-![GitHub forks](https://img.shields.io/github/forks/HelloblueAI/express_server?style=social)
-
-**Stars**
-![GitHub stars](https://img.shields.io/github/stars/HelloblueAI/express_server?style=social)
 
 
