@@ -25,27 +25,20 @@ jobs:
           node-version: '20.18.1'
           cache: 'pnpm'
 
-      - name: 📥 Force Install & Persist pnpm (Final Fix)
+      - name: 📥 Ensure pnpm is Installed & Linked
         run: |
           echo "🔹 Installing pnpm globally..."
           npm install -g pnpm@8
 
-          echo "🔹 Enabling Corepack for pnpm..."
-          corepack enable
-          corepack prepare pnpm@8 --activate
-
-          echo "🔹 Ensuring pnpm is in PATH..."
-          export PATH=$(npm root -g)/pnpm:$PATH
-          echo "export PATH=$(npm root -g)/pnpm:$PATH" >> ~/.bashrc
+          echo "🔹 Checking if pnpm is in PATH..."
+          export PNPM_PATH=$(npm root -g)/pnpm
+          export PATH=$PNPM_PATH:$PATH
+          echo "export PATH=$PNPM_PATH:$PATH" >> ~/.bashrc
           source ~/.bashrc
 
-      - name: 🔄 Verify pnpm Installation
-        run: |
-          echo "🔹 Checking PNPM location..."
+          echo "🔹 Final pnpm verification..."
           which pnpm || echo "⚠️ pnpm is still missing!"
-          echo "🔹 Checking PNPM version..."
           pnpm --version || echo "⚠️ pnpm version check failed!"
-          echo "🔹 Running PNPM doctor..."
           pnpm doctor || echo "⚠️ pnpm health check failed!"
 
       - name: 🚀 Install Dependencies (Handles Missing Lockfile)
