@@ -22,7 +22,7 @@ We take security seriously. If you have discovered a potential security vulnerab
 *    **Report via GitHub Security Advisory:** [Submit Here](https://github.com/HelloblueAI/hbLab-B01/security/advisories)
 
 
-⛔ **Do NOT disclose security issues publicly** before we have had a chance to investigate and deploy a fix.
+ **Do NOT disclose security issues publicly** before we have had a chance to investigate and deploy a fix.
 
 ### **⏳ Response & Resolution Process**
 
@@ -58,12 +58,19 @@ We value security researchers who help us keep our platform safe. If you respons
 To ensure a **secure and efficient resolution process**, please follow these guidelines when reporting vulnerabilities:
 
 ✔️ **Provide Detailed Reports**
+
 *   Include **step-by-step reproduction steps**, a **Proof of Concept (PoC)**, and a clear **impact analysis**.
+
 ✔️ **Respect Responsible Disclosure Timelines**
+
 *   Allow us **adequate time to investigate and fix** the issue **before public disclosure**.
+
 ✔️ **Use Ethical Testing Methods**
+
 *   **Avoid automated scanners, brute-force attacks, or denial-of-service (DoS) testing**, as these can disrupt services.
+
 ✔️ **Limit Exploitation to Demonstration Only**
+
 *   Do not **exploit the vulnerability beyond what is necessary** to prove its impact.
 
 ### **Out of Scope Reports**
@@ -89,3 +96,18 @@ The following types of reports **are not considered security vulnerabilities** a
 ### **🔹 Social Engineering, Spamming, or Phishing Attacks**
 
 *   **Non-technical attacks**, such as phishing, impersonation, or **attempts to deceive users into sharing credentials**.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
