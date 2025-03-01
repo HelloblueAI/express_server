@@ -1,18 +1,32 @@
 # 🎯 Ensure Python is Recognized as a Main Language
+*.py linguist-detectable
 *.py linguist-language=Python
 *.pyc linguist-vendored
 *.pyd linguist-vendored
+*.ipynb linguist-detectable linguist-language=Jupyter Notebook
 
 # 🚀 Ensure JavaScript & TypeScript Are Counted
-*.js linguist-language=JavaScript
-*.jsx linguist-language=JavaScript
-*.ts linguist-language=TypeScript
-*.tsx linguist-language=TypeScript
+*.js linguist-detectable linguist-language=JavaScript
+*.jsx linguist-detectable linguist-language=JavaScript
+*.ts linguist-detectable linguist-language=TypeScript
+*.tsx linguist-detectable linguist-language=TypeScript
 
-# 📦 Ignore Dependencies from Language Stats
+# ⚡ Add Other Relevant Languages
+*.sh linguist-detectable linguist-language=Shell
+*.mjs linguist-detectable linguist-language=JavaScript
+*.json linguist-detectable linguist-language=JSON
+*.sql linguist-detectable linguist-language=SQL
+*.yml linguist-detectable linguist-language=YAML
+*.yaml linguist-detectable linguist-language=YAML
+
+# 📦 Ignore Dependencies & Generated Files from Language Stats
 node_modules/* linguist-vendored
 dist/* linguist-vendored
 coverage/* linguist-vendored
+__pycache__/* linguist-vendored
+*.min.js linguist-vendored
+*.map linguist-vendored
+*.lock linguist-vendored
 
 # 🎨 Image & Binary Files (Using Git LFS)
 *.png filter=lfs diff=lfs merge=lfs -text
