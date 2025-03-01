@@ -1,8 +1,16 @@
+# Security Policy
+
+## 🔢 Supported Versions
+
+| Version  | Supported?           | Support Level             | Security Updates Until |
+|----------|----------------------|---------------------------|------------------------|
+| 5.1.x    | ✅ Actively Supported  | Full Feature & Security   | Ongoing               |
+| 5.0.x    | ✅ Supported           | Security Updates Only     | Until December 2025   |
+| 4.0.x    | ✅ Limited Support     | Critical Fixes Only       | Until June 2025       |
+| < 4.0    | ❌ Not Supported       | End of Life (EOL)         | -                     |
+
+
 ### Security Policy
-
-### **📌 Supported Versions**
-
-VersionSupported?Security Updates Until5.1.x✅ Actively SupportedOngoing5.0.x✅ Supported with PatchesOngoing4.0.x✅ Limited Support (Security Fixes Only)Until December 2025< 4.0❌ No Longer Supported-
 
 ### **Reporting a Vulnerability**
 
@@ -11,7 +19,6 @@ We take security seriously. If you have discovered a potential security vulnerab
 #### **How to Report**
 
 *    **Email:** security@helloblue.ai
-*    **PGP Key (Optional for Encryption):** [Download Here](#)
 *    **Report via GitHub Security Advisory:** [Submit Here](https://github.com/HelloblueAI/hbLab-B01/security/advisories)
 
 
@@ -48,8 +55,37 @@ We value security researchers who help us keep our platform safe. If you respons
 
 ### **Guidelines for Responsible Disclosure**
 
-To ensure a smooth and productive process, please:✅ Provide **detailed steps, PoC (Proof of Concept), and impact analysis**.✅ Allow us a **reasonable timeframe** to address the issue before public disclosure.✅ Avoid using **automated scanners or brute force attacks** to find vulnerabilities.✅ Do not exploit a vulnerability beyond what is necessary to demonstrate the risk.
+To ensure a **secure and efficient resolution process**, please follow these guidelines when reporting vulnerabilities:
 
-### **🚫 Out of Scope Reports**
+✔️ **Provide Detailed Reports**
+*   Include **step-by-step reproduction steps**, a **Proof of Concept (PoC)**, and a clear **impact analysis**.
+✔️ **Respect Responsible Disclosure Timelines**
+*   Allow us **adequate time to investigate and fix** the issue **before public disclosure**.
+✔️ **Use Ethical Testing Methods**
+*   **Avoid automated scanners, brute-force attacks, or denial-of-service (DoS) testing**, as these can disrupt services.
+✔️ **Limit Exploitation to Demonstration Only**
+*   Do not **exploit the vulnerability beyond what is necessary** to prove its impact.
 
-🔹 **Non-Exploitable Vulnerabilities** (e.g., lack of X-Frame-Options in non-sensitive pages).🔹 **Self-XSS (Reflected only to the attacker)**🔹 **Denial of Service (DoS) via Rate Limiting**🔹 **Reports involving outdated browsers/plugins** not in mainstream use.🔹 **Spamming, Phishing, or Social Engineering attacks.**
+### **Out of Scope Reports**
+
+The following types of reports **are not considered security vulnerabilities** and will not be eligible for review:
+
+### **🔹 Non-Exploitable Vulnerabilities**
+
+*   Issues like **missing X-Frame-Options on non-sensitive pages** that do not pose an actual risk.
+
+### **🔹 Self-XSS (Reflected Only to the Attacker)**
+
+*   Cross-site scripting (XSS) attacks that **only affect the attacker themselves** and cannot be exploited against others.
+
+### **🔹 Denial of Service (DoS) via Rate Limiting**
+
+*   Automated or manual **DoS attempts** using excessive API requests that are already mitigated by **rate limits**.
+
+### **🔹 Reports Involving Outdated Browsers & Plugins**
+
+*   Security issues affecting **obsolete browsers or unsupported third-party plugins** not in mainstream use.
+
+### **🔹 Social Engineering, Spamming, or Phishing Attacks**
+
+*   **Non-technical attacks**, such as phishing, impersonation, or **attempts to deceive users into sharing credentials**.
