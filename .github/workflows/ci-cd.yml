@@ -25,14 +25,13 @@ jobs:
           node-version: '18'
           cache: 'pnpm'
 
-      - name: 📥 Install pnpm (Corrected)
-        uses: pnpm/action-setup@v3
-        with:
-          version: 8
-          run_install: false
+      - name: 📥 Manually Install pnpm (Final Fix)
+        run: npm install -g pnpm@8
 
-      - name: 🔄 Ensure pnpm is in PATH
-        run: echo "$(pnpm root -g)/bin" >> $GITHUB_PATH
+      - name: 🔄 Verify pnpm Installation
+        run: |
+          echo "PNPM VERSION: $(pnpm --version)"
+          which pnpm
 
       - name: 🚀 Install Dependencies
         run: pnpm install --frozen-lockfile
