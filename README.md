@@ -107,12 +107,12 @@ Contributions are highly encouraged. Please fork the repository, make your chang
 
 For more information see the [LICENSE](LICENSE.md)
 
-![Node.js](https://img.shields.io/badge/Runtime-Node.js-339933?logo=node.js)
-![Express](https://img.shields.io/badge/Framework-Express-000000?logo=express)
 ![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql)
 ![MySQL](https://img.shields.io/badge/Database-MySQL-4479A1?logo=mysql)
+![Express](https://img.shields.io/badge/Framework-Express-000000?logo=express)
 ![Axios](https://img.shields.io/badge/HTTP-Axios-5A29E4?logo=axios)
 ![ES6+](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript)
+![Node.js](https://img.shields.io/badge/Runtime-Node.js-339933?logo=node.js)
 ![pnpm](https://img.shields.io/badge/Package%20Manager-pnpm-F69220?logo=pnpm)
 ![GitHub CI/CD](https://img.shields.io/github/actions/workflow/status/HelloblueAI/express_server/ci-cd.yml?logo=github-actions&label=CI/CD)
 ![AWS](https://img.shields.io/badge/Cloud-AWS-FF9900?logo=amazon-aws)
