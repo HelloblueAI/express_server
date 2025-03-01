@@ -22,16 +22,17 @@ jobs:
       - name: 📦 Set up Node.js (Correct Version)
         uses: actions/setup-node@v4
         with:
-          node-version: '20.18.1' # Ensures the correct Node.js version is used
+          node-version: '20.18.1'
           cache: 'pnpm'
 
       - name: 📥 Install pnpm (Final Fix)
         run: |
+          echo "Manually installing pnpm..."
+          npm install -g pnpm@8
           corepack enable
           corepack prepare pnpm@8 --activate
-          pnpm --version
 
-      - name: 🔄 Ensure pnpm is in PATH
+      - name: 🔄 Verify pnpm Installation
         run: |
           echo "Checking PNPM location..."
           which pnpm
