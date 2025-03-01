@@ -19,34 +19,23 @@ jobs:
       - name: 📥 Checkout Repository
         uses: actions/checkout@v4
 
+      - name: 🛠️ Install pnpm BEFORE Setting Up Node.js
+        run: |
+          echo "🔹 Installing pnpm globally BEFORE setting up Node.js..."
+          npm install -g pnpm@8
+          export PATH=$(npm root -g)/pnpm:$PATH
+          echo "export PATH=$(npm root -g)/pnpm:$PATH" >> ~/.bashrc
+          source ~/.bashrc
+
+          echo "🔹 Verifying pnpm installation..."
+          which pnpm || echo "⚠️ pnpm is still missing!"
+          pnpm --version || echo "⚠️ pnpm version check failed!"
+
       - name: 📦 Set up Node.js (Correct Version)
         uses: actions/setup-node@v4
         with:
           node-version: '20.18.1'
           cache: 'pnpm'
-
-      - name: 📥 Ensure pnpm is Installed & Available
-        run: |
-          echo "🔹 Checking if pnpm exists..."
-          if ! command -v pnpm &> /dev/null; then
-            echo "❌ pnpm not found! Installing manually..."
-            npm install -g pnpm@8
-          else
-            echo "✅ pnpm already installed!"
-          fi
-
-          echo "🔹 Activating Corepack for pnpm..."
-          corepack enable || echo "⚠️ Corepack failed, skipping..."
-
-          echo "🔹 Ensuring pnpm is in PATH..."
-          export PATH=$(npm root -g)/pnpm:$PATH
-          echo "export PATH=$(npm root -g)/pnpm:$PATH" >> ~/.bashrc
-          source ~/.bashrc
-
-          echo "🔹 Final pnpm verification..."
-          which pnpm || echo "⚠️ pnpm is still missing!"
-          pnpm --version || echo "⚠️ pnpm version check failed!"
-          pnpm doctor || echo "⚠️ pnpm health check failed!"
 
       - name: 🚀 Install Dependencies (Handles Missing Lockfile)
         run: |
