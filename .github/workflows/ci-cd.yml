@@ -25,15 +25,22 @@ jobs:
           node-version: '20.18.1'
           cache: 'pnpm'
 
-      - name: 📥 Ensure pnpm is Installed & Linked
+      - name: 📥 Ensure pnpm is Installed & Available
         run: |
-          echo "🔹 Installing pnpm globally..."
-          npm install -g pnpm@8
+          echo "🔹 Checking if pnpm exists..."
+          if ! command -v pnpm &> /dev/null; then
+            echo "❌ pnpm not found! Installing manually..."
+            npm install -g pnpm@8
+          else
+            echo "✅ pnpm already installed!"
+          fi
 
-          echo "🔹 Checking if pnpm is in PATH..."
-          export PNPM_PATH=$(npm root -g)/pnpm
-          export PATH=$PNPM_PATH:$PATH
-          echo "export PATH=$PNPM_PATH:$PATH" >> ~/.bashrc
+          echo "🔹 Activating Corepack for pnpm..."
+          corepack enable || echo "⚠️ Corepack failed, skipping..."
+
+          echo "🔹 Ensuring pnpm is in PATH..."
+          export PATH=$(npm root -g)/pnpm:$PATH
+          echo "export PATH=$(npm root -g)/pnpm:$PATH" >> ~/.bashrc
           source ~/.bashrc
 
           echo "🔹 Final pnpm verification..."
