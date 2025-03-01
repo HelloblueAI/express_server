@@ -1,39 +1,55 @@
-# Security Policy
+### Security Policy
 
-## Supported Versions
+### **📌 Supported Versions**
+
+VersionSupported?Security Updates Until5.1.x✅ Actively SupportedOngoing5.0.x✅ Supported with PatchesOngoing4.0.x✅ Limited Support (Security Fixes Only)Until December 2025< 4.0❌ No Longer Supported-
+
+### **Reporting a Vulnerability**
+
+We take security seriously. If you have discovered a potential security vulnerability, we **strongly encourage** you to report it **privately and responsibly** so we can address it promptly.
+
+#### **How to Report**
+
+*    **Email:** security@helloblue.ai
+*    **PGP Key (Optional for Encryption):** [Download Here](#)
+*    **Report via GitHub Security Advisory:** [Submit Here](https://github.com/HelloblueAI/hbLab-B01/security/advisories)
 
 
+⛔ **Do NOT disclose security issues publicly** before we have had a chance to investigate and deploy a fix.
 
-| Version | Supported          |
-| ------- | ------------------ |
-| 5.1.x   | :white_check_mark: |
-| 5.0.x   | :white_check_mark:                 |
-| 4.0.x   | :white_check_mark: |
-| < 4.0   | :x:                |
+### **⏳ Response & Resolution Process**
 
-## Reporting a Vulnerability
+Once a report is received, we follow a structured response process:
 
-The security of our project is a top priority. If you believe you have found a security vulnerability in our application, we encourage you to let us know right away. We will do our best to address it as quickly as possible.
+1.  **Initial Acknowledgment (Within 48 Hours)**
 
-### Contact
+    *   We confirm receipt of your report.
+    *   We may ask for **additional details** or proof of concept (PoC).
 
-Please report security vulnerabilities by contacting us directly at security@helloblue.ai. Avoid disclosing them publicly until they have been resolved.
+2.  **Investigation & Risk Assessment**
 
-### Response
+    *   Our security team will **reproduce** the issue and evaluate its severity.
+    *   If valid, we prioritize it based on impact.
 
-After reporting a vulnerability, you can expect the following response from us:
+3.  **Fix Development & Testing**
 
-- **Initial response within 48 hours**: We will acknowledge your report and outline the next steps.
-- **Investigation**: Our team will investigate the issue and determine the required actions.
-- **Resolution and follow-up**: If the vulnerability is confirmed, we will work closely with you to resolve it and communicate updates regularly.
+    *   A security patch will be developed, reviewed, and tested.
+    *   Where necessary, we coordinate **responsible disclosure** timelines with the reporter.
 
-### Acknowledgment
+4.  **Deployment & Public Disclosure**
+    *   The fix is rolled out via **a security update.**
+    *   We may publish a **CVE (Common Vulnerabilities and Exposures) identifier** if applicable.
+    *   The issue may be **acknowledged in release notes** (if the reporter consents).
 
-Once a significant vulnerability has been resolved, we will publicly acknowledge it in our project updates. Contributors who report valid issues may be credited for their efforts, unless they prefer to remain anonymous.
+### ** Acknowledgment & Recognition**
+We value security researchers who help us keep our platform safe. If you responsibly disclose a vulnerability, you may be **publicly credited** for your findings (if you wish).Additionally, high-impact vulnerabilities may qualify for **Hall of Fame recognition** or **future collaboration opportunities.** 🎖️
 
-## What to Expect After Reporting
+**Responsible Disclosure Rewards** (non-monetary) may include:✔️ **Special Mention in Release Notes**✔️ **LinkedIn or GitHub Recognition**✔️ **Early Access to Security Previews**
 
-- **Acceptance**: If the vulnerability is accepted, we will work with you to understand its scope and impact to develop an effective fix.
-- **Declination**: If the report is declined, we will provide reasons why it does not meet our criteria as a security vulnerability.
+### **Guidelines for Responsible Disclosure**
 
-Your efforts to responsibly disclose your findings are appreciated. Your help is invaluable in keeping our project and its users safe.
+To ensure a smooth and productive process, please:✅ Provide **detailed steps, PoC (Proof of Concept), and impact analysis**.✅ Allow us a **reasonable timeframe** to address the issue before public disclosure.✅ Avoid using **automated scanners or brute force attacks** to find vulnerabilities.✅ Do not exploit a vulnerability beyond what is necessary to demonstrate the risk.
+
+### **🚫 Out of Scope Reports**
+
+🔹 **Non-Exploitable Vulnerabilities** (e.g., lack of X-Frame-Options in non-sensitive pages).🔹 **Self-XSS (Reflected only to the attacker)**🔹 **Denial of Service (DoS) via Rate Limiting**🔹 **Reports involving outdated browsers/plugins** not in mainstream use.🔹 **Spamming, Phishing, or Social Engineering attacks.**
