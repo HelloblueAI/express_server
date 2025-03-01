@@ -23,15 +23,19 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '18'
-          cache: 'pnpm'
 
-      - name: 📥 Manually Install pnpm (Final Fix)
-        run: npm install -g pnpm@8
-
-      - name: 🔄 Verify pnpm Installation
+      - name: 📥 Install pnpm (Guaranteed Fix)
         run: |
-          echo "PNPM VERSION: $(pnpm --version)"
+          corepack enable
+          corepack prepare pnpm@8 --activate
+          pnpm --version
+
+      - name: 🔄 Ensure pnpm is in PATH
+        run: |
+          echo "Checking PNPM location..."
           which pnpm
+          echo "Checking PNPM version..."
+          pnpm --version
 
       - name: 🚀 Install Dependencies
         run: pnpm install --frozen-lockfile
