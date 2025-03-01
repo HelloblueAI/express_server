@@ -109,105 +109,24 @@ Contributions are highly encouraged. Please fork the repository, make your chang
 ### License
 
 For more information see the [LICENSE](LICENSE.md)
-
-### Technologies & Frameworks
-**Node.js**
 ![Node.js](https://img.shields.io/badge/Runtime-Node.js-339933?logo=node.js)
-
-**Express.js**
 ![Express](https://img.shields.io/badge/Framework-Express-000000?logo=express)
-
-**PostgreSQL**
 ![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql)
-
-**MySQL**
 ![MySQL](https://img.shields.io/badge/Database-MySQL-4479A1?logo=mysql)
-
-**Axios (HTTP Requests)**
 ![Axios](https://img.shields.io/badge/HTTP-Axios-5A29E4?logo=axios)
-
-**ES6+ JavaScript**
 ![ES6+](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript)
-
-**Package Manager**
 ![pnpm](https://img.shields.io/badge/Package%20Manager-pnpm-F69220?logo=pnpm)
-
----
-
-### Development & Deployment
-**GitHub CI/CD**
 ![GitHub CI/CD](https://img.shields.io/github/actions/workflow/status/HelloblueAI/express_server/main.yml?logo=github-actions&label=CI/CD)
-
-**Docker**
-![Docker](https://img.shields.io/badge/Containerized-Docker-2496ED?logo=docker)
-
-**AWS (Cloud Hosting)**
 ![AWS](https://img.shields.io/badge/Cloud-AWS-FF9900?logo=amazon-aws)
-
-**Vercel Deployment**
 ![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?logo=vercel)
-
-**Netlify Deployment**
 ![Netlify](https://img.shields.io/badge/Deployed%20on-Netlify-00C7B7?logo=netlify)
-
----
-
-### Security & Authentication
-**CORS Protection**
 ![CORS](https://img.shields.io/badge/CORS-Enabled-blue)
-
-**JWT Authentication**
-![JWT Auth](https://img.shields.io/badge/Auth-JWT%20Bearer-FF6600?logo=jsonwebtokens)
-
-**HTTPS Support**
 ![HTTPS](https://img.shields.io/badge/HTTPS-Supported-green?logo=letsencrypt)
-
-**Security Policy**
+![JWT Auth](https://img.shields.io/badge/Auth-JWT%20Bearer-FF6600?logo=jsonwebtokens)
 ![Security](https://img.shields.io/badge/Security-Enabled-brightgreen?logo=shield-check)
-
----
-
-### API & Documentation
-**REST API**
 ![REST API](https://img.shields.io/badge/API-REST-blue?logo=api)
-
-**Swagger API Docs**
 ![Swagger](https://img.shields.io/badge/Docs-Swagger-85EA2D?logo=swagger)
-
-**Tested on Postman**
 ![Postman](https://img.shields.io/badge/Tested%20on-Postman-orange?logo=postman)
-
----
-
-### Monitoring & Logging
-**PM2 Process Manager**
 ![PM2](https://img.shields.io/badge/Process_Manager-PM2-2B037A?logo=pm2)
-
-**Winston Logging**
 ![Winston](https://img.shields.io/badge/Logging-Winston-231F20?logo=winston)
-
-**Error Logging**
-![Logs](https://img.shields.io/badge/Logs-Error%20Tracking-red)
-
----
-
-### Linting & Code Quality
-**ESLint**
 ![ESLint](https://img.shields.io/badge/Linter-ESLint-4B32C3?logo=eslint)
-
-**Prettier**
-![Prettier](https://img.shields.io/badge/Formatter-Prettier-ff69b4?logo=prettier)
-
----
-
-### Package Management & Versioning
-**Fast Package Manager**
-![pnpm](https://img.shields.io/badge/Package%20Manager-pnpm-F69220?logo=pnpm)
-
-**Semantic Versioning**
-![SemVer](https://img.shields.io/badge/SemVer-2.0.0-blue)
-
----
-
-
-
