@@ -5,8 +5,6 @@
 This project is an Express.js API server that handles requests for company information stored in a PostgreSQL database. It utilizes `cors` for cross-origin resource sharing and is equipped with `winston` for logging.
 
 
-Performance and Reliability Enhancements
-========================================
 
 Performance Enhancements
 ------------------------
@@ -36,14 +34,14 @@ Code Structure
 *   ESLint compliance
 
 
-## Prerequisites
+### Prerequisites
 ![71a60a94-b852-4636-94cf-e0b4de6d3371](https://github.com/pejmantheory/express_server/assets/81389644/b2a0795e-d1fc-4d15-aeae-946564977d9e)
 
 - Node.js (preferably the latest LTS version)
 - PostgreSQL database
 - A `.env` file with your environment variables (e.g., `DATABASE_URL`)
 
-## Installation
+### Installation
 
 Clone the repository and install dependencies:
 
@@ -55,7 +53,7 @@ Clone the repository and install dependencies:
 
 Optionally, you can specify the `PORT` environment variable in the `.env` file to override the default port (8080).
 
-## Running the Server
+### Running the Server
 
 To launch the server, execute:
 ```bash
@@ -63,34 +61,34 @@ pnpm start
 ```
 This command starts the server on the specified port or defaults to 8080 and logs startup details in the console.
 
-## API Endpoints
+### API Endpoints
 
 - `GET /`
   - Returns a simple "Hello World!" message.
 - `GET /api/company`
   - Fetches company information based on the provided query parameter name, e.g., `/api/company?name=exampleCompany`. Returns company details if found; otherwise, it responds with a 404 error and a "Company not found." message.
 
-## Logging
+### Logging
 
 Logs are managed through `winston` and are directed to:
 - `combined.log` - Contains all logs.
 - `error.log` - Contains only logs of error level.
 
-## Security and CORS
+### Security and CORS
 
 The server configures CORS to accept requests from the following origins:
 - `http://localhost:3001`
 
 Requests originating from other sources will be rejected to ensure security.
 
-# Security Policy
+### Security Policy
 For detailed information on our security practices and how to report security vulnerabilities, please see our [Security Policy](https://github.com/HelloblueAI/express_server/blob/76c83a36dbf7df1e01149c0a19b252ee9079ab2b/SECURITY.md)
 
-## Reporting a Vulnerability
+### Reporting a Vulnerability
 
 If you discover a potential security issue in our project, please send us a confidential report to `security@helloblue.ai`. Do not report security vulnerabilities through public GitHub issues.
 
-## Response Protocol
+### Response Protocol
 
 Upon receiving a security vulnerability report, the protocol is as follows:
 
@@ -98,23 +96,24 @@ Upon receiving a security vulnerability report, the protocol is as follows:
 - **Investigation**: We will investigate the issue and determine the necessary remediation steps.
 - **Resolution**: We aim to resolve significant issues within 90 days of report verification, depending on the severity and complexity. We will keep you informed of our progress.
 
-## Public Disclosure
+### Public Disclosure
 
 - **Acknowledgment**: Vulnerabilities found and resolved will be publicly acknowledged in our project updates. Reporters may be credited for their discovery, provided they consent to be recognized.
 
 
-## Contributing
+### Contributing
 
 Contributions are highly encouraged. Please fork the repository, make your changes, and submit a pull request. If you encounter any issues, please submit a new issue on our [issues page](https://github.com/HelloblueAI/hbLab-B01/issues)
 
-## License
+### License
 
 For more information see the [LICENSE](LICENSE.md)
 
-![Node.js](https://img.shields.io/badge/Runtime-Node.js-339933?logo=node.js)
-![ES6+](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript)
+
 ![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-336791?logo=postgresql)
 ![MySQL](https://img.shields.io/badge/Database-MySQL-4479A1?logo=mysql)
+![Node.js](https://img.shields.io/badge/Runtime-Node.js-339933?logo=node.js)
+![ES6+](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript)
 ![Express](https://img.shields.io/badge/Framework-Express-000000?logo=express)
 ![Axios](https://img.shields.io/badge/HTTP-Axios-5A29E4?logo=axios)
 ![Winston](https://img.shields.io/badge/Logging-Winston-231F20?logo=winston)
