@@ -1,0 +1,62 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  pull_request:
+    branches:
+      - main
+      - master
+
+jobs:
+  build:
+    name: 🚀 Build & Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: 🚀 Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🧐 Run Linting (ESLint)
+        run: pnpm run lint
+
+      - name: 🧪 Run Tests
+        run: pnpm test
+
+      - name: 🔍 Check for Security Vulnerabilities
+        run: pnpm audit
+
+  deploy:
+    name: 🚀 Deploy to Production
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: 📦 Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'pnpm'
+
+      - name: 🚀 Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: 🏗️ Build the Project
+        run: pnpm run build
+
+      - name: 🔄 Restart Server (PM2)
+        run: pm2 restart all || pm2 start pnpm --name "express_server" -- start
