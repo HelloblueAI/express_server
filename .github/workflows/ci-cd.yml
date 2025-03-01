@@ -67,8 +67,21 @@ jobs:
             echo "⚠️ No build script found, skipping build step!"
           fi
 
-      - name: 🔄 Restart Server (PM2)
-        run: pm2 restart all || pm2 start pnpm --name "express_server" -- start
+      - name: 🚀 Install & Verify PM2
+        run: |
+          echo "🔹 Installing PM2 globally..."
+          npm install -g pm2
+          export PATH=$(npm root -g)/pm2:$PATH
+          echo "export PATH=$(npm root -g)/pm2:$PATH" >> ~/.bashrc
+          source ~/.bashrc
+
+          echo "🔹 Verifying PM2 installation..."
+          which pm2 || echo "⚠️ PM2 is still missing!"
+          pm2 --version || echo "⚠️ PM2 version check failed!"
+
+      - name: 🔄 Restart Server with PM2
+        run: |
+          pm2 restart all || pm2 start server.mjs --name "express_server"
 
       - name: 🔑 Generate Build Provenance Attestation
         uses: actions/attest-build-provenance@v2
