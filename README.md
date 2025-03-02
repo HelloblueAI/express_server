@@ -2,10 +2,11 @@
 ![Copy of Copy of Copy of Copy of Untitled (120 x 100 px)](https://github.com/HelloblueAI/express_server/assets/81389644/82726605-097d-43be-80a4-ff3c0d08886f)
 
 ### B01 API Server
-This project is an Express.js API server that handles requests for company information stored in a PostgreSQL database. It utilizes `cors` for cross-origin resource sharing and is equipped with `winston` for logging.
-
+It leverages cors to facilitate cross-origin resource sharing and integrates winston for efficient logging.
 
 ### Performance Enhancements
+
+This project is an Express.js-based API server designed to process requests for company information stored in a PostgreSQL database.
 
 *   Multi-core processing using Node.js cluster module to utilize all CPU cores
 *   Two-level caching with both memory (very fast) and disk caching
