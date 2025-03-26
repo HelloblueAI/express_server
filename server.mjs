@@ -27,6 +27,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import dotenv from 'dotenv';
 import logger from './logger.mjs';
+import rateLimit from 'express-rate-limit';
 
 dotenv.config();
 
@@ -38,7 +39,43 @@ const pool = new pg.Pool({
   },
 });
 
-app.use(helmet());
+// Configure rate limiters
+const globalLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // Limit each IP to 100 requests per windowMs
+  message: 'Too many requests from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const apiLimiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 50, // Limit each IP to 50 requests per windowMs
+  message: 'Too many API requests from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+const dbTestLimiter = rateLimit({
+  windowMs: 60 * 60 * 1000, // 1 hour
+  max: 10, // Limit each IP to 10 requests per windowMs
+  message: 'Too many database test requests from this IP, please try again later.',
+  standardHeaders: true,
+  legacyHeaders: false,
+});
+
+// Apply global rate limiter to all requests
+app.use(globalLimiter);
+
+app.use(helmet({
+  contentSecurityPolicy: false, // Disable CSP to prevent breaking existing functionality
+  crossOriginEmbedderPolicy: false, // Disable COEP to prevent breaking existing functionality
+  crossOriginResourcePolicy: { policy: "cross-origin" }, // Allow cross-origin resources
+  xssFilter: true,
+  noSniff: true,
+  referrerPolicy: { policy: "strict-origin-when-cross-origin" }
+}));
+
 app.use(cors({
   origin: '*',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
@@ -60,7 +97,7 @@ app.get('/', (req, res) => {
   res.send('Hello World!');
 });
 
-app.get('/test-db', async (req, res) => {
+app.get('/test-db', dbTestLimiter, async (req, res) => {
   try {
     const result = await pool.query('SELECT NOW()');
     res.json({ message: 'Database connection is successful', time: result.rows[0].now });
@@ -69,7 +106,7 @@ app.get('/test-db', async (req, res) => {
   }
 });
 
-app.get('/api/test-companies', async (req, res) => {
+app.get('/api/test-companies', apiLimiter, async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM companies LIMIT 10');
     res.json(result.rows);
@@ -78,15 +115,27 @@ app.get('/api/test-companies', async (req, res) => {
   }
 });
 
-app.get('/api/company', async (req, res) => {
+app.get('/api/company', apiLimiter, async (req, res) => {
   const { name } = req.query;
-  if (!name) {
-    return res.status(400).json({ error: 'Please provide a company name.' });
+  
+  // Basic input validation
+  if (!name || typeof name !== 'string' || name.length > 100) {
+    return res.status(400).json({ 
+      error: 'Invalid company name. Please provide a valid company name (max 100 characters).' 
+    });
+  }
+
+  // Sanitize input - remove any potentially dangerous characters
+  const sanitizedName = name.replace(/[^a-zA-Z0-9\s\-_]/g, '').trim();
+  if (!sanitizedName) {
+    return res.status(400).json({ 
+      error: 'Invalid company name. Please provide a valid company name.' 
+    });
   }
 
   try {
     const queryText = 'SELECT * FROM companies WHERE LOWER(company_name) = LOWER($1)';
-    const { rows } = await pool.query(queryText, [name]);
+    const { rows } = await pool.query(queryText, [sanitizedName]);
 
     if (rows.length > 0) {
       return res.json({
@@ -106,11 +155,12 @@ app.get('/api/company', async (req, res) => {
   }
 });
 
-
+// Standardize error handling
 app.use((err, req, res, _next) => {
   logger.error('Internal server error:', err);
-  res.status(500).json({
-    error: 'Internal server error, could not fetch company data.',
+  const statusCode = err.statusCode || 500;
+  res.status(statusCode).json({
+    error: 'Internal server error',
     ...(process.env.NODE_ENV === 'development' ? { detail: err.message } : {}),
   });
 });
